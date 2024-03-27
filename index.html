@@ -200,7 +200,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-03-27 14:39:23" itemprop="dateModified" datetime="2024-03-27T14:39:23+08:00">2024-03-27</time>
+                <time title="修改时间：2024-03-27 14:49:55" itemprop="dateModified" datetime="2024-03-27T14:49:55+08:00">2024-03-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -218,14 +218,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.6k</span>
+              <span>3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -465,10 +465,22 @@
 </tr>
 </tbody></table>
 <p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedwps14.jpg"></p>
+<center style="color:#C0C0C0;text-decoration:underline">独立按键电路</center>
+
 <p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240327143902820.png" alt="image-20240327143902820"></p>
 <center style="color:#C0C0C0;text-decoration:underline">矩阵按键电路</center>
 
-<h2 id="温度湿度检测电路"><a href="#温度湿度检测电路" class="headerlink" title="温度湿度检测电路"></a>温度湿度检测电路</h2>
+<h2 id="温度湿度检测电路"><a href="#温度湿度检测电路" class="headerlink" title="温度湿度检测电路"></a>温度湿度检测电路</h2><p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240327144442514.png" alt="image-20240327144442514"></p>
+<center style="color:#C0C0C0;text-decoration:underline">温湿度传感器电路</center>
+
+<p>经过大量的测试和我们所有的知识储备，最终我选择DHT11模块对温度，湿度进行检测并显示在12864显示器上。DHT的引脚图如下所示。 <br></p>
+<p>DHT11共有三个引脚，其中VCC，GND分别接入单片机电源模块上的VCC,GND。程序初始化后，单片机首先向DATA管脚发送一个低电平脉冲.</p>
+<h3 id="触发DHT11采集数据"><a href="#触发DHT11采集数据" class="headerlink" title="触发DHT11采集数据"></a>触发DHT11采集数据</h3><p>总线空闲状态为高电平,单片机把总线拉低等待DHT11响应,单片机把总线拉低必须大于18ms,保证DHT11能检测到起始信号。</p>
+<p>当DHT11接收到单片机的开始信号后,等待单片机开始信号结束,然后发送80us低电平响应信号。</p>
+<p>单片机发送开始信号结束后,延时等待20-40us后,切换为输入状态，等待DHT11的80us低电平信号结束，然后判断DHT11是否是否发出 80us 的高电平；如果是，即可开始采集数据。</p>
+<p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240327144815458.png" alt="image-20240327144815458"></p>
+<center style="color:#C0C0C0;text-decoration:underline">采集数据的时序图</center>
+
       
     </div>
 
@@ -698,7 +710,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2 分钟</span>
+    <span title="站点阅读时长">3 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
