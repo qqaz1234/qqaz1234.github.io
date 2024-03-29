@@ -37,8 +37,17 @@
 <meta property="og:image" content="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240327143902820.png">
 <meta property="og:image" content="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240327144442514.png">
 <meta property="og:image" content="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240327144815458.png">
+<meta property="og:image" content="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240329171431160.png">
+<meta property="og:image" content="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240329171440210.png">
+<meta property="og:image" content="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240329171538449.png">
+<meta property="og:image" content="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240329171640275.png">
+<meta property="og:image" content="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240329172203874.png">
+<meta property="og:image" content="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240329172256085.png">
+<meta property="og:image" content="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240329172539074.png">
+<meta property="og:image" content="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240329172640045.png">
+<meta property="og:image" content="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240329172701440.png">
 <meta property="article:published_time" content="2024-03-26T02:04:25.000Z">
-<meta property="article:modified_time" content="2024-03-27T06:49:55.639Z">
+<meta property="article:modified_time" content="2024-03-29T09:27:24.994Z">
 <meta property="article:author" content="eejhx">
 <meta property="article:tag" content="esp8266">
 <meta property="article:tag" content="onenet云平台">
@@ -214,7 +223,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-03-27 14:49:55" itemprop="dateModified" datetime="2024-03-27T14:49:55+08:00">2024-03-27</time>
+                <time title="修改时间：2024-03-29 17:27:24" itemprop="dateModified" datetime="2024-03-29T17:27:24+08:00">2024-03-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -239,14 +248,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3k</span>
+              <span>4.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -502,6 +511,53 @@
 <p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240327144815458.png" alt="image-20240327144815458"></p>
 <center style="color:#C0C0C0;text-decoration:underline">采集数据的时序图</center>
 
+<h3 id="数字0和1的信号时序"><a href="#数字0和1的信号时序" class="headerlink" title="数字0和1的信号时序"></a><strong>数字0和1的信号时序</strong></h3><p>当DHT11输出数字0时， 单片机读取到的信号为50 us的低电平，之后为26-28 us的高电平。当DHT11输出数字1时， 单片机读取到的信号为50 us的低电平，之后为70 us的高电平。</p>
+<p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240329171431160.png" alt="image-20240329171427862"></p>
+<center style="color:#C0C0C0;text-decoration:underline">数字0的时序图</center>
+
+<p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240329171440210.png" alt="image-20240329171440210"></p>
+<center style="color:#C0C0C0;text-decoration:underline">数字1的时序图</center>
+
+<h3 id="总时序图"><a href="#总时序图" class="headerlink" title="总时序图"></a>总时序图</h3><p>用户MCU发送一次开始信号后,DHT11从低功耗模式转换到高速模式,等待主机开始信号结束后,DHT11发送响应信号,送出40bit的数据,并触发一次信号采集,用户可选择读取部分数据。</p>
+<p>从模式下,DHT11接收到开始信号触发一次温湿度采集,如果没有接收到主机发送开始信号,DHT11不会主动进行温湿度采集。当一次完整的采集数据后，DHT11会转换到低速模式。</p>
+<p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240329171538449.png" alt="image-20240329171538449"></p>
+<center style="color:#C0C0C0;text-decoration:underline">总时序图</center>
+
+<h2 id="ESP8266WIFI模块"><a href="#ESP8266WIFI模块" class="headerlink" title="ESP8266WIFI模块"></a>ESP8266WIFI模块</h2><p>ESP8266是一款高性能的WIFI串口模块，内部集成<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=MCU&spm=1001.2101.3001.7020">MCU</a>能实现单片机之间串口通信，是目前使用最广泛的一种WIFI模块之一。接线时只需要将RXD、TXD、GND、VCC这4个引脚，分别和USB转TTL模块的TXD、RXD、GND、VCC相连接。</p>
+<p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240329171640275.png"></p>
+<center style="color:#C0C0C0;text-decoration:underline">ESP8266原理图</center>
+
+<p>然后再通过USB转TTL模块和AT指令集通过以下步骤在串口助手中或者直接在单片机程序中对ESP8266模块进行配置。</p>
+<ol>
+<li>AT——测试ESP8266是否工作完好</li>
+<li>AT+CWMODE&#x3D;1——设置ESP8266的工作模式为Station模式</li>
+<li>AT+CWJAP&#x3D;”WIFI名称,”WIFI密码”——进行WIFI连接（注意这里的手机热点或者外部热点只能是英文名称）</li>
+<li>AT+CIPSTART&#x3D;”TCP”,” 你电脑自己的IP地址”,”设置的端口”——建立TCP连接，设置IP地址和PORT端口。</li>
+<li>AT+CIPMODE&#x3D;1——开启ESP8266的透传模式。</li>
+<li>AT+CIPSEND——准备发送数据</li>
+<li>POST &#x2F;devices&#x2F;1051580320&#x2F;datapoints?type&#x3D;3 HTTP&#x2F;1.1  ——onenet的设备</li>
+</ol>
+<p>api-key:1ZXQyfKnqL1bqEV0D0JJqbL7pmc&#x3D;    ——onenet的master key</p>
+<p>Host:api.heclouds.com              ——onenet的主机ip地址</p>
+<p>Content-Length:21                ——传输的数据长度</p>
+<p>{“temp”:temp,”humi”:humi}            ——传输的数据</p>
+<p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240329172203874.png" alt="image-20240329172203874"></p>
+<center style="color:#C0C0C0;text-decoration:underline">ESP8266常用指令集</center>
+
+<h2 id="EEPROM电路"><a href="#EEPROM电路" class="headerlink" title="EEPROM电路"></a>EEPROM电路</h2><p>EEPROM电路的主要部分为AT24C02，原理图如下所示。</p>
+<p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240329172256085.png" alt="image-20240329172256085"></p>
+<center style="color:#C0C0C0;text-decoration:underline">EEPROM电路</center>
+
+<p>AT24C02 器件地址为 7 位，高 4 位固定为 1010，低 3 位由 A0&#x2F;A1&#x2F;A2 信号线的电平决定。 因为传输地址或数据是以字节为单位传送的，当传送地址时，器件地址占 7 位，还有最后一位（最低位 R&#x2F;W）用来选择读写方向。<br>A0&#x2F;A1&#x2F;A2 默认连接到 GND，所以器件地址为1010000，即 0x50（未计算最低位）。如果要对芯片进行写操作时，R&#x2F;W 即为 0，写器件地址即为 0XA0；如果要对芯片进行读操作时，R&#x2F;W 即为 1，此时读器件地址为 0XA1。开发板上我们也将 WP 引脚直接接在 GND 上，此时芯片允许数据正常读写。</p>
+<p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240329172539074.png" alt="image-20240329172539074"></p>
+<center style="color:#C0C0C0;text-decoration:underline">AT24C02的芯片格式</center>
+
+<h1 id="总电路设计"><a href="#总电路设计" class="headerlink" title="总电路设计"></a>总电路设计</h1><p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240329172640045.png" alt="image-20240329172640045"></p>
+<center style="color:#C0C0C0;text-decoration:underline">总电路硬件连接图</center>
+
+<p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240329172701440.png" alt="image-20240329172701440"></p>
+<center style="color:#C0C0C0;text-decoration:underline">总电路硬件实物图</center>
+
     </div>
 
     
@@ -600,7 +656,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD"><span class="nav-number">1.</span> <span class="nav-text">系统功能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8E%9F%E7%90%86%E6%A1%86%E5%9B%BE%E5%8F%8A%E8%AF%B4%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">原理框图及说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E9%87%8F%E5%8E%9F%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text">测量原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E"><span class="nav-number">2.2.</span> <span class="nav-text">使用说明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E7%94%B5%E8%B7%AF%E8%AF%B4%E6%98%8E%E3%80%81%E5%85%83%E4%BB%B6%E9%80%89%E6%8B%A9%E5%8F%8A%E5%8F%82%E6%95%B0%E8%AE%A1%E7%AE%97"><span class="nav-number">3.</span> <span class="nav-text">主要电路说明、元件选择及参数计算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E4%BD%8D%E4%B8%8E%E6%8C%AF%E8%8D%A1%E7%94%B5%E8%B7%AF"><span class="nav-number">3.1.</span> <span class="nav-text">复位与振荡电路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E7%94%B5%E8%B7%AF"><span class="nav-number">3.2.</span> <span class="nav-text">显示电路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%89%E9%94%AE%E7%94%B5%E8%B7%AF"><span class="nav-number">3.3.</span> <span class="nav-text">按键电路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%A9%E5%BA%A6%E6%B9%BF%E5%BA%A6%E6%A3%80%E6%B5%8B%E7%94%B5%E8%B7%AF"><span class="nav-number">3.4.</span> <span class="nav-text">温度湿度检测电路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A6%E5%8F%91DHT11%E9%87%87%E9%9B%86%E6%95%B0%E6%8D%AE"><span class="nav-number">3.4.1.</span> <span class="nav-text">触发DHT11采集数据</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD"><span class="nav-number">1.</span> <span class="nav-text">系统功能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8E%9F%E7%90%86%E6%A1%86%E5%9B%BE%E5%8F%8A%E8%AF%B4%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">原理框图及说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E9%87%8F%E5%8E%9F%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text">测量原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E"><span class="nav-number">2.2.</span> <span class="nav-text">使用说明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E7%94%B5%E8%B7%AF%E8%AF%B4%E6%98%8E%E3%80%81%E5%85%83%E4%BB%B6%E9%80%89%E6%8B%A9%E5%8F%8A%E5%8F%82%E6%95%B0%E8%AE%A1%E7%AE%97"><span class="nav-number">3.</span> <span class="nav-text">主要电路说明、元件选择及参数计算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E4%BD%8D%E4%B8%8E%E6%8C%AF%E8%8D%A1%E7%94%B5%E8%B7%AF"><span class="nav-number">3.1.</span> <span class="nav-text">复位与振荡电路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E7%94%B5%E8%B7%AF"><span class="nav-number">3.2.</span> <span class="nav-text">显示电路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%89%E9%94%AE%E7%94%B5%E8%B7%AF"><span class="nav-number">3.3.</span> <span class="nav-text">按键电路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%A9%E5%BA%A6%E6%B9%BF%E5%BA%A6%E6%A3%80%E6%B5%8B%E7%94%B5%E8%B7%AF"><span class="nav-number">3.4.</span> <span class="nav-text">温度湿度检测电路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A6%E5%8F%91DHT11%E9%87%87%E9%9B%86%E6%95%B0%E6%8D%AE"><span class="nav-number">3.4.1.</span> <span class="nav-text">触发DHT11采集数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%970%E5%92%8C1%E7%9A%84%E4%BF%A1%E5%8F%B7%E6%97%B6%E5%BA%8F"><span class="nav-number">3.4.2.</span> <span class="nav-text">数字0和1的信号时序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E6%97%B6%E5%BA%8F%E5%9B%BE"><span class="nav-number">3.4.3.</span> <span class="nav-text">总时序图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ESP8266WIFI%E6%A8%A1%E5%9D%97"><span class="nav-number">3.5.</span> <span class="nav-text">ESP8266WIFI模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EEPROM%E7%94%B5%E8%B7%AF"><span class="nav-number">3.6.</span> <span class="nav-text">EEPROM电路</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.</span> <span class="nav-text">总电路设计</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -670,12 +726,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">3k</span>
+    <span title="站点总字数">4k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3 分钟</span>
+    <span title="站点阅读时长">4 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
