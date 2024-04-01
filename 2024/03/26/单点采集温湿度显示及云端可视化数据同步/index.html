@@ -50,8 +50,10 @@
 <meta property="og:image" content="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240401172731304.png">
 <meta property="og:image" content="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240401173024832.png">
 <meta property="og:image" content="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240401174447136.png">
+<meta property="og:image" content="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240401184513924.png">
+<meta property="og:image" content="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240401190005994.png">
 <meta property="article:published_time" content="2024-03-26T02:04:25.000Z">
-<meta property="article:modified_time" content="2024-04-01T09:45:05.014Z">
+<meta property="article:modified_time" content="2024-04-01T11:11:06.111Z">
 <meta property="article:author" content="eejhx">
 <meta property="article:tag" content="esp8266">
 <meta property="article:tag" content="onenet云平台">
@@ -227,7 +229,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-01 17:45:05" itemprop="dateModified" datetime="2024-04-01T17:45:05+08:00">2024-04-01</time>
+                <time title="修改时间：2024-04-01 19:11:06" itemprop="dateModified" datetime="2024-04-01T19:11:06+08:00">2024-04-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -252,14 +254,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.1k</span>
+              <span>8.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
+              <span>7 分钟</span>
             </span>
 
         </div>
@@ -556,12 +558,14 @@
 <p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240329172539074.png" alt="image-20240329172539074"></p>
 <center style="color:#C0C0C0;text-decoration:underline">AT24C02的芯片格式</center>
 
+<hr>
 <h1 id="总电路设计"><a href="#总电路设计" class="headerlink" title="总电路设计"></a>总电路设计</h1><p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240329172640045.png" alt="image-20240329172640045"></p>
 <center style="color:#C0C0C0;text-decoration:underline">总电路硬件连接图</center>
 
 <p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240329172701440.png" alt="image-20240329172701440"></p>
 <center style="color:#C0C0C0;text-decoration:underline">总电路硬件实物图</center>
 
+<hr>
 <h1 id="软件设计思路及框图"><a href="#软件设计思路及框图" class="headerlink" title="软件设计思路及框图"></a>软件设计思路及框图</h1><h2 id="软件设计思路及主流程图"><a href="#软件设计思路及主流程图" class="headerlink" title="软件设计思路及主流程图"></a>软件设计思路及主流程图</h2><p>根据题目的设计要求以及我自己附加的功能，我采用定时器0和定时器1作为时钟数据源，定时器0每用来完成功能1姓名学号显示3s，定时器1用来对ESP8266和II2C进行初始化并实现发送数据、存储数据以及初始化数据线的功能。设置温湿度、显示温湿度信息和上下限、继电器以及直流电机的工作、矩阵键盘扫描、比较当前数据和设定阈值的差别、发送温湿度数据等全部放在主程序中实现。</p>
 <p>温湿度获取部分设置数据缓冲区，DHT11传感器获取的温湿度信息直接送入缓冲区，由程序完成动态扫描。</p>
 <h3 id="设计的全局变量"><a href="#设计的全局变量" class="headerlink" title="设计的全局变量"></a>设计的全局变量</h3><ol>
@@ -595,7 +599,7 @@
 
 <h3 id="定义的端口"><a href="#定义的端口" class="headerlink" title="定义的端口"></a>定义的端口</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> LCD_data  P0   ——LCD数据口</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> keyboard  P1   ——定义矩阵键盘</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> UART_REC_LEN  10  ——定义ESP8266最大接收字节数</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="设计的函数如下"><a href="#设计的函数如下" class="headerlink" title="设计的函数如下"></a>设计的函数如下</h3><ol>
+<h3 id="函数设计"><a href="#函数设计" class="headerlink" title="函数设计"></a>函数设计</h3><ol>
 <li>主函数main()</li>
 </ol>
 <p>入口：无，出口：无。 一个大的循环，程序用不结束。</p>
@@ -617,7 +621,7 @@
 <p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240401172731304.png" alt="image-20240401172731304"></p>
 <center style="color:#C0C0C0;text-decoration:underline">主程序框图</center>
 
-<h2 id="延时模块"><a href="#延时模块" class="headerlink" title="延时模块"></a>延时模块</h2><h3 id="设计的函数如下-1"><a href="#设计的函数如下-1" class="headerlink" title="设计的函数如下"></a>设计的函数如下</h3><ol>
+<h2 id="延时模块"><a href="#延时模块" class="headerlink" title="延时模块"></a>延时模块</h2><h3 id="函数设计-1"><a href="#函数设计-1" class="headerlink" title="函数设计"></a>函数设计</h3><ol>
 <li>void delay_ms(uint ms)</li>
 </ol>
 <p>   功能：设置延迟ms的函数</p>
@@ -633,9 +637,9 @@
 <p>功能：设置延迟的us的函数</p>
 <p>入口：延迟us的函数 出口：无</p>
 <p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240401173024832.png" alt="image-20240401173024832"></p>
-<center style="color:#C0C0C0;text-decoration:underline">延时程序实现
+<center style="color:#C0C0C0;text-decoration:underline">延时实现</center>
 
-<h2 id="LCD12864显示模块"><a href="#LCD12864显示模块" class="headerlink" title="LCD12864显示模块"></a>LCD12864显示模块</h2><ol>
+<h2 id="LCD12864显示模块"><a href="#LCD12864显示模块" class="headerlink" title="LCD12864显示模块"></a><code>LCD12864</code>显示模块</h2><ol>
 <li>设计的端口值</li>
 </ol>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bit LCD_RS  =  P2^<span class="number">6</span>;       <span class="comment">//寄存器选择输入</span></span><br><span class="line">sbit LCD_RW  =  P2^<span class="number">5</span>;       <span class="comment">//液晶读/写控制</span></span><br><span class="line">sbit LCD_EN  =  P2^<span class="number">7</span>;       <span class="comment">//液晶使能控制</span></span><br><span class="line">sbit LCD_PSB =  P3^<span class="number">2</span>;       <span class="comment">//串/并方式控制</span></span><br></pre></td></tr></table></figure>
@@ -674,7 +678,148 @@
 <p>功能：LCD根据设定的位置显示字符串</p>
 <p>入口：设置的x轴和y轴，显示的字符串 出口：无 调用的函数：lcd_wdat(uchar dat)</p>
 <p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240401174447136.png" alt="image-20240401174447136"></p>
-<center style="color:#C0C0C0;text-decoration:underline">lcd12864模块流程图
+<center style="color:#C0C0C0;text-decoration:underline">lcd12864模块流程图</center>
+
+<h2 id="按键扫描模块"><a href="#按键扫描模块" class="headerlink" title="按键扫描模块"></a>按键扫描模块</h2><h3 id="定义的端口值"><a href="#定义的端口值" class="headerlink" title="定义的端口值"></a>定义的端口值</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> keyboard P1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="函数设计-2"><a href="#函数设计-2" class="headerlink" title="函数设计"></a>函数设计</h3><p>uchar Keypress()</p>
+<p>   功能：扫描哪个按键按下了</p>
+<p>   入口：无，出口：按下的按键</p>
+<h2 id="DHT11传感器数据获取模块"><a href="#DHT11传感器数据获取模块" class="headerlink" title="DHT11传感器数据获取模块"></a>DHT11传感器数据获取模块</h2><h3 id="设计的全局变量-1"><a href="#设计的全局变量-1" class="headerlink" title="设计的全局变量"></a>设计的全局变量</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uchar rec_dat[<span class="number">9</span>];</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义的端口-1"><a href="#定义的端口-1" class="headerlink" title="定义的端口"></a>定义的端口</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sbit Data=P3^<span class="number">6</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="函数设计-3"><a href="#函数设计-3" class="headerlink" title="函数设计"></a>函数设计</h3><ol>
+<li>DHT11_start()</li>
+</ol>
+<p>   功能：初始化DHT11温湿度传感器模块</p>
+<p>   入口：无，出口：无</p>
+<ol start="2">
+<li>DHT11_rec_byte()</li>
+</ol>
+<p>功能：DHT11接收获取到的字节数据</p>
+<p>入口：无  出口：接收到的字节数据</p>
+<ol start="3">
+<li>DHT11_receive()</li>
+</ol>
+<p>功能：接收所有的温度湿度电平数据并进行转换</p>
+<p>入口：无  出口：转换的温湿度数据</p>
+<ol start="4">
+<li>DHT11_temget()</li>
+</ol>
+<p>功能：把转换过的数据存进湿度和温度数组中去 </p>
+<p>入口：无 出口：无 调用函数：lcd_wcmd,lcd_busy()</p>
+<p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240401184513924.png" alt="image-20240401184513924"></p>
+<center style="color:#C0C0C0;text-decoration:underline">DHT11温湿度传感器获取温度湿度</center>
+
+<h2 id="显示温度界面"><a href="#显示温度界面" class="headerlink" title="显示温度界面"></a>显示温度界面</h2><h3 id="设计的全局变量-2"><a href="#设计的全局变量-2" class="headerlink" title="设计的全局变量"></a>设计的全局变量</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">uchar number[]=<span class="string">&quot;123456789&quot;</span>;  ——矩阵键盘的按下值</span><br><span class="line">uchar temtop[<span class="number">4</span>];  ——设置的温度上限值</span><br><span class="line">uchar temlow[<span class="number">4</span>];  ——设置的温度下限值</span><br><span class="line">uchar humtop[<span class="number">4</span>];  ——设置的湿度上限值</span><br><span class="line">uchar humlow[<span class="number">4</span>];  ——设置的湿度下限值</span><br><span class="line">uchar wendu[<span class="number">4</span>];  ——温度数据缓存值</span><br><span class="line">uchar shidu[<span class="number">4</span>];   ——湿度数据缓存值</span><br><span class="line">uint ttop,tlow,htop,hlow,tnow,hnow; ——把温度湿度上下限数组缓存值转化为十进制数</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义的端口-2"><a href="#定义的端口-2" class="headerlink" title="定义的端口"></a>定义的端口</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sbit beep=P2^<span class="number">5</span>; ——蜂鸣器引脚</span><br><span class="line">sbit wind=P2^<span class="number">2</span>; ——继电器引脚</span><br></pre></td></tr></table></figure>
+
+<h3 id="函数设计-4"><a href="#函数设计-4" class="headerlink" title="函数设计"></a>函数设计</h3><ol>
+<li>showtem()</li>
+</ol>
+<p>   功能：显示当前温度和湿度</p>
+<p>   入口：无，出口：无</p>
+<ol start="2">
+<li>settem()</li>
+</ol>
+<p>功能：设置温湿度上下限</p>
+<p>入口：无  出口：无</p>
+<h2 id="ESP8266WIFI发送模块"><a href="#ESP8266WIFI发送模块" class="headerlink" title="ESP8266WIFI发送模块"></a>ESP8266WIFI发送模块</h2><h3 id="函数设计-5"><a href="#函数设计-5" class="headerlink" title="函数设计"></a>函数设计</h3><ol>
+<li>UART_Init(void)</li>
+</ol>
+<p>功能：初始化UART协议和定时器1</p>
+<p>入口：无  出口：无</p>
+<ol start="2">
+<li>UART_SendData(uchar dat)</li>
+</ol>
+<p>功能：发送一个字符数据</p>
+<p>入口：字符数据  出口：无</p>
+<ol start="3">
+<li>UART_SendString(uchar *pbuf)</li>
+</ol>
+<p>功能：发送一个字符串数据</p>
+<p>入口：字符串数据  出口：无</p>
+<ol start="4">
+<li><p>ESP8266_SendCmd(uchar *pbuf)</p>
+<p>功能：向ESP8266发送AT指令集</p>
+<p>入口：AT指令，字符串格式，出口：无</p>
+</li>
+<li><p>ESP8266_SendData(uchar *pbuf)</p>
+</li>
+</ol>
+<p>功能：ESP8266 WIFI发送数据到APP</p>
+<p>入口：数据  出口：无</p>
+<ol start="6">
+<li>ESP8266_ModeInit(void)</li>
+</ol>
+<p>功能：ESP8266 WIFI模块工作模式初始化</p>
+<p>入口：无  出口：无</p>
+<ol start="7">
+<li>ESP8266_SendData(uchar *pbuf)</li>
+</ol>
+<p>功能：ESP8266 WIFI发送数据到APP</p>
+<p>入口：数据  出口：无</p>
+<ol start="8">
+<li>wifi_control_init(void)</li>
+</ol>
+<p>功能：WIFI控制的初始化</p>
+<p>入口：无  出口：无</p>
+<h2 id="EEPROM断电不丢失模块"><a href="#EEPROM断电不丢失模块" class="headerlink" title="EEPROM断电不丢失模块"></a>EEPROM断电不丢失模块</h2><h3 id="定义的端口-3"><a href="#定义的端口-3" class="headerlink" title="定义的端口"></a>定义的端口</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sbit sda = P2 ^ <span class="number">0</span>; <span class="comment">//I2C总线数据线</span></span><br><span class="line">sbit scl = P2 ^ <span class="number">1</span>; <span class="comment">//I2C总线时钟线</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="函数设计-6"><a href="#函数设计-6" class="headerlink" title="函数设计"></a>函数设计</h3><ol>
+<li><p>c02_init()</p>
+<p>功能：初始化24C02芯片</p>
+<p>入口：无，出口：无</p>
+</li>
+<li><p>start()</p>
+</li>
+</ol>
+<p>功能：启动II2C总线 </p>
+<p>入口：无  出口：无</p>
+<ol start="3">
+<li>stop()</li>
+</ol>
+<p>功能：停止II2C总线 </p>
+<p>入口：无  出口：无</p>
+<ol start="4">
+<li>writebyte(unsigned char j)</li>
+</ol>
+<p>功能：向数据线中写入一个字节</p>
+<p>入口：一个字符数据  出口：无</p>
+<ol start="5">
+<li>readbyte()</li>
+</ol>
+<p>功能：读取数据线中的一个字节</p>
+<p>入口：无  出口：无</p>
+<ol start="6">
+<li>read24c02(unsigned char address)</li>
+</ol>
+<p>功能：从24c02的地址address中读取一个字节数据</p>
+<p>入口：24C02的地址  出口：无</p>
+<ol start="7">
+<li>write24c02(unsigned char address, unsigned char info)</li>
+</ol>
+<p>功能：向24c02的address地址中写入一字节数据info</p>
+<p>入口：地址，字符数据  出口：无</p>
+<ol start="8">
+<li>save_data()</li>
+</ol>
+<p>功能：保存温度和湿度数据</p>
+<p>入口：无  出口：无</p>
+<ol start="9">
+<li>read_data()</li>
+</ol>
+<p>功能：读取保存的温度和湿度数据</p>
+<p>入口：无  出口：无</p>
+<h1 id="结果及测试分析"><a href="#结果及测试分析" class="headerlink" title="结果及测试分析"></a>结果及测试分析</h1><h2 id="硬件电路"><a href="#硬件电路" class="headerlink" title="硬件电路"></a>硬件电路</h2><p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240401190005994.png" alt="image-20240401190005994"></p>
+<center style="color:#C0C0C0;text-decoration:underline">硬件实物图</center>
+
+<p><strong>说明</strong></p>
+<p>硬件部分的连接过程在原理图中都有具体列出。</p>
+<p>对于电源模块，由于51单片机自带的电源输出端口只有一个5V和3.3V不能够满足我们众多外加模块的供电需求，所以我这里采用面包板模拟拓展5V电源和3.3V电源。</p>
+<p>在连接实物图时由于51单片机自带的12864端口会遮挡住引脚的连接，所以在这里我采用杜邦线把51单片机端口与12864端口相连接。DHT11温湿度传感器直接连接我们配置好的引脚并连接电源即可。继电器模块由于我们采用的是电平触发模式，所以需要把继电器模块的IN端口连接至配置好的端口并接上电源即可，COM端口接地、NC端口接电源，NO端口悬空，直流电机分别于GND和NC端口相连从而达到继电器控制直流电机的效果。ESP8266WIFI模块的RX和TX分别于单片机的TX和RX相连并且连接上3.3V电源和GND就可以达到上传数据至上位机和云平台的效果。</p>
 
     </div>
 
@@ -774,7 +919,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD"><span class="nav-number">1.</span> <span class="nav-text">系统功能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8E%9F%E7%90%86%E6%A1%86%E5%9B%BE%E5%8F%8A%E8%AF%B4%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">原理框图及说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E9%87%8F%E5%8E%9F%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text">测量原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E"><span class="nav-number">2.2.</span> <span class="nav-text">使用说明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E7%94%B5%E8%B7%AF%E8%AF%B4%E6%98%8E%E3%80%81%E5%85%83%E4%BB%B6%E9%80%89%E6%8B%A9%E5%8F%8A%E5%8F%82%E6%95%B0%E8%AE%A1%E7%AE%97"><span class="nav-number">3.</span> <span class="nav-text">主要电路说明、元件选择及参数计算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E4%BD%8D%E4%B8%8E%E6%8C%AF%E8%8D%A1%E7%94%B5%E8%B7%AF"><span class="nav-number">3.1.</span> <span class="nav-text">复位与振荡电路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E7%94%B5%E8%B7%AF"><span class="nav-number">3.2.</span> <span class="nav-text">显示电路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%89%E9%94%AE%E7%94%B5%E8%B7%AF"><span class="nav-number">3.3.</span> <span class="nav-text">按键电路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%A9%E5%BA%A6%E6%B9%BF%E5%BA%A6%E6%A3%80%E6%B5%8B%E7%94%B5%E8%B7%AF"><span class="nav-number">3.4.</span> <span class="nav-text">温度湿度检测电路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A6%E5%8F%91DHT11%E9%87%87%E9%9B%86%E6%95%B0%E6%8D%AE"><span class="nav-number">3.4.1.</span> <span class="nav-text">触发DHT11采集数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%970%E5%92%8C1%E7%9A%84%E4%BF%A1%E5%8F%B7%E6%97%B6%E5%BA%8F"><span class="nav-number">3.4.2.</span> <span class="nav-text">数字0和1的信号时序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E6%97%B6%E5%BA%8F%E5%9B%BE"><span class="nav-number">3.4.3.</span> <span class="nav-text">总时序图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ESP8266WIFI%E6%A8%A1%E5%9D%97"><span class="nav-number">3.5.</span> <span class="nav-text">ESP8266WIFI模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EEPROM%E7%94%B5%E8%B7%AF"><span class="nav-number">3.6.</span> <span class="nav-text">EEPROM电路</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.</span> <span class="nav-text">总电路设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%8F%8A%E6%A1%86%E5%9B%BE"><span class="nav-number">5.</span> <span class="nav-text">软件设计思路及框图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%8F%8A%E4%B8%BB%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="nav-number">5.1.</span> <span class="nav-text">软件设计思路及主流程图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F"><span class="nav-number">5.1.1.</span> <span class="nav-text">设计的全局变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E7%9A%84%E7%AB%AF%E5%8F%A3"><span class="nav-number">5.1.2.</span> <span class="nav-text">设计的端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E7%9A%84%E7%AB%AF%E5%8F%A3"><span class="nav-number">5.1.3.</span> <span class="nav-text">定义的端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%87%BD%E6%95%B0%E5%A6%82%E4%B8%8B"><span class="nav-number">5.1.4.</span> <span class="nav-text">设计的函数如下</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%B6%E6%97%B6%E6%A8%A1%E5%9D%97"><span class="nav-number">5.2.</span> <span class="nav-text">延时模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%87%BD%E6%95%B0%E5%A6%82%E4%B8%8B-1"><span class="nav-number">5.2.1.</span> <span class="nav-text">设计的函数如下</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCD12864%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%9D%97"><span class="nav-number">5.3.</span> <span class="nav-text">LCD12864显示模块</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD"><span class="nav-number">1.</span> <span class="nav-text">系统功能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8E%9F%E7%90%86%E6%A1%86%E5%9B%BE%E5%8F%8A%E8%AF%B4%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">原理框图及说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E9%87%8F%E5%8E%9F%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text">测量原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E"><span class="nav-number">2.2.</span> <span class="nav-text">使用说明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E7%94%B5%E8%B7%AF%E8%AF%B4%E6%98%8E%E3%80%81%E5%85%83%E4%BB%B6%E9%80%89%E6%8B%A9%E5%8F%8A%E5%8F%82%E6%95%B0%E8%AE%A1%E7%AE%97"><span class="nav-number">3.</span> <span class="nav-text">主要电路说明、元件选择及参数计算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E4%BD%8D%E4%B8%8E%E6%8C%AF%E8%8D%A1%E7%94%B5%E8%B7%AF"><span class="nav-number">3.1.</span> <span class="nav-text">复位与振荡电路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E7%94%B5%E8%B7%AF"><span class="nav-number">3.2.</span> <span class="nav-text">显示电路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%89%E9%94%AE%E7%94%B5%E8%B7%AF"><span class="nav-number">3.3.</span> <span class="nav-text">按键电路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%A9%E5%BA%A6%E6%B9%BF%E5%BA%A6%E6%A3%80%E6%B5%8B%E7%94%B5%E8%B7%AF"><span class="nav-number">3.4.</span> <span class="nav-text">温度湿度检测电路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A6%E5%8F%91DHT11%E9%87%87%E9%9B%86%E6%95%B0%E6%8D%AE"><span class="nav-number">3.4.1.</span> <span class="nav-text">触发DHT11采集数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%970%E5%92%8C1%E7%9A%84%E4%BF%A1%E5%8F%B7%E6%97%B6%E5%BA%8F"><span class="nav-number">3.4.2.</span> <span class="nav-text">数字0和1的信号时序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E6%97%B6%E5%BA%8F%E5%9B%BE"><span class="nav-number">3.4.3.</span> <span class="nav-text">总时序图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ESP8266WIFI%E6%A8%A1%E5%9D%97"><span class="nav-number">3.5.</span> <span class="nav-text">ESP8266WIFI模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EEPROM%E7%94%B5%E8%B7%AF"><span class="nav-number">3.6.</span> <span class="nav-text">EEPROM电路</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.</span> <span class="nav-text">总电路设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%8F%8A%E6%A1%86%E5%9B%BE"><span class="nav-number">5.</span> <span class="nav-text">软件设计思路及框图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%8F%8A%E4%B8%BB%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="nav-number">5.1.</span> <span class="nav-text">软件设计思路及主流程图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F"><span class="nav-number">5.1.1.</span> <span class="nav-text">设计的全局变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E7%9A%84%E7%AB%AF%E5%8F%A3"><span class="nav-number">5.1.2.</span> <span class="nav-text">设计的端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E7%9A%84%E7%AB%AF%E5%8F%A3"><span class="nav-number">5.1.3.</span> <span class="nav-text">定义的端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%AE%BE%E8%AE%A1"><span class="nav-number">5.1.4.</span> <span class="nav-text">函数设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%B6%E6%97%B6%E6%A8%A1%E5%9D%97"><span class="nav-number">5.2.</span> <span class="nav-text">延时模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%AE%BE%E8%AE%A1-1"><span class="nav-number">5.2.1.</span> <span class="nav-text">函数设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCD12864%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%9D%97"><span class="nav-number">5.3.</span> <span class="nav-text">LCD12864显示模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%89%E9%94%AE%E6%89%AB%E6%8F%8F%E6%A8%A1%E5%9D%97"><span class="nav-number">5.4.</span> <span class="nav-text">按键扫描模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E7%9A%84%E7%AB%AF%E5%8F%A3%E5%80%BC"><span class="nav-number">5.4.1.</span> <span class="nav-text">定义的端口值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%AE%BE%E8%AE%A1-2"><span class="nav-number">5.4.2.</span> <span class="nav-text">函数设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DHT11%E4%BC%A0%E6%84%9F%E5%99%A8%E6%95%B0%E6%8D%AE%E8%8E%B7%E5%8F%96%E6%A8%A1%E5%9D%97"><span class="nav-number">5.5.</span> <span class="nav-text">DHT11传感器数据获取模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F-1"><span class="nav-number">5.5.1.</span> <span class="nav-text">设计的全局变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E7%9A%84%E7%AB%AF%E5%8F%A3-1"><span class="nav-number">5.5.2.</span> <span class="nav-text">定义的端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%AE%BE%E8%AE%A1-3"><span class="nav-number">5.5.3.</span> <span class="nav-text">函数设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E6%B8%A9%E5%BA%A6%E7%95%8C%E9%9D%A2"><span class="nav-number">5.6.</span> <span class="nav-text">显示温度界面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F-2"><span class="nav-number">5.6.1.</span> <span class="nav-text">设计的全局变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E7%9A%84%E7%AB%AF%E5%8F%A3-2"><span class="nav-number">5.6.2.</span> <span class="nav-text">定义的端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%AE%BE%E8%AE%A1-4"><span class="nav-number">5.6.3.</span> <span class="nav-text">函数设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ESP8266WIFI%E5%8F%91%E9%80%81%E6%A8%A1%E5%9D%97"><span class="nav-number">5.7.</span> <span class="nav-text">ESP8266WIFI发送模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%AE%BE%E8%AE%A1-5"><span class="nav-number">5.7.1.</span> <span class="nav-text">函数设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EEPROM%E6%96%AD%E7%94%B5%E4%B8%8D%E4%B8%A2%E5%A4%B1%E6%A8%A1%E5%9D%97"><span class="nav-number">5.8.</span> <span class="nav-text">EEPROM断电不丢失模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E7%9A%84%E7%AB%AF%E5%8F%A3-3"><span class="nav-number">5.8.1.</span> <span class="nav-text">定义的端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%AE%BE%E8%AE%A1-6"><span class="nav-number">5.8.2.</span> <span class="nav-text">函数设计</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C%E5%8F%8A%E6%B5%8B%E8%AF%95%E5%88%86%E6%9E%90"><span class="nav-number">6.</span> <span class="nav-text">结果及测试分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E7%94%B5%E8%B7%AF"><span class="nav-number">6.1.</span> <span class="nav-text">硬件电路</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -844,12 +989,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">6k</span>
+    <span title="站点总字数">8k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">6 分钟</span>
+    <span title="站点阅读时长">7 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
