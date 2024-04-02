@@ -170,6 +170,168 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/02/linux%E6%93%8D%E4%BD%9C%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="eejhx">
+      <meta itemprop="description" content="见你潜入深海，伴我匿于人间">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="嵌入小屋">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/02/linux%E6%93%8D%E4%BD%9C%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/" class="post-title-link" itemprop="url">linux操作常用指令</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-04-02 18:24:49 / 修改时间：20:34:34" itemprop="dateCreated datePublished" datetime="2024-04-02T18:24:49+08:00">2024-04-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>234</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Linux操作常用指令"><a href="#Linux操作常用指令" class="headerlink" title="Linux操作常用指令"></a>Linux操作常用指令</h1><p>快捷调取命令行：<code>ctrl+alt+T</code></p>
+<p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240402185534400.png" alt="image-20240402185534400"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">pwd	 	<span class="comment">#显示当前所在的目录</span></span><br><span class="line">ls   	<span class="comment">#显示当前目录下的文件</span></span><br><span class="line">cd .. 	<span class="comment">#返回到上一级的路径</span></span><br><span class="line">mkdir	<span class="comment">#新建目录</span></span><br><span class="line">rmdir 	<span class="comment">#删除目录 </span></span><br><span class="line">rm 目标路径 -r <span class="comment">#删除指定目标路径 </span></span><br><span class="line">touch 	<span class="comment">#新建文件</span></span><br><span class="line">cp 		<span class="comment">#复制文件</span></span><br><span class="line">rm 		<span class="comment">#删除文件</span></span><br><span class="line">cat 	<span class="comment">#将文件内容显示到终端中</span></span><br><span class="line">clear 	<span class="comment">#清除屏幕显示内容</span></span><br><span class="line"></span><br><span class="line">cat 	<span class="comment">#显示文件内容</span></span><br><span class="line">touch 	<span class="comment">#修改文件时间</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="文件的权限和属性修改"><a href="#文件的权限和属性修改" class="headerlink" title="文件的权限和属性修改"></a>文件的权限和属性修改</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240402202513890.png" alt="image-20240402202513890"></p>
+<h3 id="chmod-改变文件权限"><a href="#chmod-改变文件权限" class="headerlink" title="chmod 改变文件权限"></a>chmod 改变文件权限</h3><p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240402202545754.png" alt="image-20240402202545754"></p>
+<h3 id="chown改变文件所有者"><a href="#chown改变文件所有者" class="headerlink" title="chown改变文件所有者"></a>chown改变文件所有者</h3><p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240402202806266.png" alt="image-20240402202806266"></p>
+<p><img src="https://blog-images-1325348240.cos.ap-nanjing.myqcloud.com/undefinedimage-20240402203249857.png" alt="image-20240402203249857"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/02/%E5%9F%BA%E4%BA%8ETCP%E7%9A%84%E6%B5%81%E5%AA%92%E4%BD%93%E8%A7%86%E9%A2%91%E9%9F%B3%E9%A2%91%E5%8A%A0%E5%AF%86%E4%BC%A0%E8%BE%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="eejhx">
+      <meta itemprop="description" content="见你潜入深海，伴我匿于人间">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="嵌入小屋">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/02/%E5%9F%BA%E4%BA%8ETCP%E7%9A%84%E6%B5%81%E5%AA%92%E4%BD%93%E8%A7%86%E9%A2%91%E9%9F%B3%E9%A2%91%E5%8A%A0%E5%AF%86%E4%BC%A0%E8%BE%93/" class="post-title-link" itemprop="url">基于TCP的流媒体视频音频加密传输</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-04-02 15:35:23" itemprop="dateCreated datePublished" datetime="2024-04-02T15:35:23+08:00">2024-04-02</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>0</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/03/26/%E5%8D%95%E7%82%B9%E9%87%87%E9%9B%86%E6%B8%A9%E6%B9%BF%E5%BA%A6%E6%98%BE%E7%A4%BA%E5%8F%8A%E4%BA%91%E7%AB%AF%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -201,7 +363,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-02 15:29:29" itemprop="dateModified" datetime="2024-04-02T15:29:29+08:00">2024-04-02</time>
+                <time title="修改时间：2024-04-02 15:31:01" itemprop="dateModified" datetime="2024-04-02T15:31:01+08:00">2024-04-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -877,17 +1039,8 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-03-26 10:47:24" itemprop="dateModified" datetime="2024-03-26T10:47:24+08:00">2024-03-26</time>
+                <time title="修改时间：2024-04-02 18:33:50" itemprop="dateModified" datetime="2024-04-02T18:33:50+08:00">2024-04-02</time>
               </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/51%E5%8D%95%E7%89%87%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">51单片机</span></a>
-                </span>
-            </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -998,20 +1151,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
